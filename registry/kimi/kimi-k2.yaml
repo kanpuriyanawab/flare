@@ -1,0 +1,38 @@
+name: kimi-k2
+display_name: "Kimi K2 Thinking"
+family: kimi
+version: "k2"
+description: "Moonshot AI's Kimi K2 — powerful reasoning model with tool orchestration."
+hf_model_id: "moonshotai/Kimi-K2-Thinking"
+serving:
+  engine: vllm
+  tensor_parallel: 8
+  context_length: 131072
+  max_model_len: 131072
+  dtype: auto
+  gpu_memory_utilization: 0.90
+  extra_args:
+    - "--enable-auto-tool-choice"
+    - "--tool-call-parser kimi_k2"
+    - "--reasoning-parser kimi_k2"
+    - "--trust-remote-code"
+gpus:
+  recommended: ["H200:8", "H100:8"]
+  minimum: ["H200:8"]
+  fallback: ["H100:8"]
+memory_gb: 800
+disk_gb: 1024
+startup_time_seconds: 600
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - reasoning
+  - function-calling
+  - tool-use
+tags:
+  - kimi
+  - moonshot
+  - reasoning
+  - flagship
+  - large

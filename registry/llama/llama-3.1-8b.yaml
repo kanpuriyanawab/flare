@@ -1,0 +1,30 @@
+name: llama-3.1-8b
+display_name: "Llama 3.1 8B Instruct"
+family: llama
+version: "3.1"
+description: "Meta's Llama 3.1 8B instruction-following model. Great balance of speed and quality."
+hf_model_id: "meta-llama/Llama-3.1-8B-Instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 131072
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1", "V100:1"]
+memory_gb: 18
+disk_gb: 40
+startup_time_seconds: 120
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+tags:
+  - llama
+  - meta
+  - instruction-following
+  - fast

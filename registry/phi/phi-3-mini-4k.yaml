@@ -1,0 +1,33 @@
+name: phi-3-mini-4k
+display_name: "Phi-3 Mini 4K Instruct"
+family: phi
+version: "3"
+description: "Microsoft's Phi-3 Mini 4K — small but mighty, 3.8B params, outperforms larger models."
+hf_model_id: "microsoft/Phi-3-mini-4k-instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 4096
+  max_model_len: 4096
+  dtype: auto
+  gpu_memory_utilization: 0.85
+  extra_args:
+    - "--trust-remote-code"
+gpus:
+  recommended: ["T4:1", "L4:1"]
+  minimum: ["T4:1"]
+  fallback: []
+memory_gb: 8
+disk_gb: 15
+startup_time_seconds: 60
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - code-generation
+tags:
+  - phi
+  - microsoft
+  - lightweight
+  - fast
+  - coding

@@ -1,0 +1,30 @@
+name: gemma-3-4b
+display_name: "Gemma 3 4B Instruct"
+family: gemma
+version: "3"
+description: "Google's Gemma 3 4B — compact powerhouse with multimodal capabilities."
+hf_model_id: "google/gemma-3-4b-it"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 8192
+  max_model_len: 8192
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["L4:1", "A10G:1", "T4:1"]
+  minimum: ["T4:1"]
+  fallback: []
+memory_gb: 10
+disk_gb: 20
+startup_time_seconds: 90
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+  - vision
+tags:
+  - gemma
+  - google
+  - multimodal
+  - fast

@@ -1,0 +1,30 @@
+name: gemma-3-4b-q4km
+display_name: "Gemma 3 4B Q4_K_M (GGUF)"
+family: gemma
+version: "3"
+description: "Gemma 3 4B quantized to Q4_K_M GGUF. Google quality in under 3GB VRAM."
+gguf:
+  repo_id: "bartowski/gemma-3-4b-it-GGUF"
+  filename: "gemma-3-4b-it-Q4_K_M.gguf"
+  quantization: "Q4_K_M"
+serving:
+  engine: llama-cpp
+  n_gpu_layers: -1
+  context_length: 8192
+  n_threads: 8
+gpus:
+  recommended: ["T4:1", "L4:1"]
+  minimum: ["T4:1"]
+  fallback: []
+memory_gb: 3
+disk_gb: 3
+startup_time_seconds: 45
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+tags:
+  - gemma
+  - gguf
+  - quantized
+  - ultra-lightweight

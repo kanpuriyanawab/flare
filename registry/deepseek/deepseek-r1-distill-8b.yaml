@@ -1,0 +1,32 @@
+name: deepseek-r1-distill-8b
+display_name: "DeepSeek-R1 Distill Llama 8B"
+family: deepseek
+version: "r1-distill"
+description: "DeepSeek's R1 reasoning model distilled into Llama 3.1 8B. Strong reasoning at low cost."
+hf_model_id: "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 131072
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1"]
+memory_gb: 18
+disk_gb: 40
+startup_time_seconds: 120
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - reasoning
+  - math
+tags:
+  - deepseek
+  - reasoning
+  - distilled
+  - math
+  - fast

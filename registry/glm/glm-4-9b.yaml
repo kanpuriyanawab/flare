@@ -1,0 +1,34 @@
+name: glm-4-9b
+display_name: "GLM-4 9B Chat"
+family: glm
+version: "4"
+description: "THUDM's GLM-4 9B — strong Chinese-English bilingual model with tool use."
+hf_model_id: "THUDM/glm-4-9b-chat"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 131072
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+  extra_args:
+    - "--trust-remote-code"
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1"]
+memory_gb: 22
+disk_gb: 45
+startup_time_seconds: 150
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+  - code-generation
+tags:
+  - glm
+  - thudm
+  - bilingual
+  - chinese
+  - function-calling

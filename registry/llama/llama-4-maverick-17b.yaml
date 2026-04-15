@@ -1,0 +1,33 @@
+name: llama-4-maverick-17b
+display_name: "Llama 4 Maverick 17B (128E MoE) Instruct FP8"
+family: llama
+version: "4"
+description: "Meta's Llama 4 Maverick — 17B active params, 128-expert MoE. State-of-the-art quality."
+hf_model_id: "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"
+serving:
+  engine: vllm
+  tensor_parallel: 8
+  context_length: 524288
+  max_model_len: 430000
+  dtype: float8
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["H100:8", "H200:8", "B100:8"]
+  minimum: ["H100:8"]
+  fallback: ["B200:8"]
+memory_gb: 400
+disk_gb: 512
+startup_time_seconds: 480
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+  - reasoning
+  - long-context
+tags:
+  - llama
+  - meta
+  - moe
+  - latest
+  - flagship

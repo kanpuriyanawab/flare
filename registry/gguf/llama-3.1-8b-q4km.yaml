@@ -1,0 +1,32 @@
+name: llama-3.1-8b-q4km
+display_name: "Llama 3.1 8B Q4_K_M (GGUF)"
+family: llama
+version: "3.1"
+description: "Llama 3.1 8B with 128K context, quantized to Q4_K_M. Best small GGUF for production."
+gguf:
+  repo_id: "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF"
+  filename: "Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+  quantization: "Q4_K_M"
+serving:
+  engine: llama-cpp
+  n_gpu_layers: -1
+  context_length: 32768
+  n_threads: 8
+gpus:
+  recommended: ["L4:1", "A10G:1", "T4:1"]
+  minimum: ["T4:1"]
+  fallback: []
+memory_gb: 6
+disk_gb: 6
+startup_time_seconds: 60
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+tags:
+  - llama
+  - gguf
+  - quantized
+  - lightweight
+  - long-context

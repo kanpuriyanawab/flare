@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  gateway:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ~/.flare:/root/.flare
+      - ~/.aws:/root/.aws:ro
+      - ~/.config/gcloud:/root/.config/gcloud:ro
+    environment:
+      - FLARE_GATEWAY_HOST=0.0.0.0
+      - FLARE_GATEWAY_PORT=8080
+      - FLARE_DB_PATH=/root/.flare/gateway.db
+      - FLARE_POLL_INTERVAL=30
+      # Uncomment for Redis HA:
+      # - FLARE_REDIS_URL=redis://redis:6379
+      # Uncomment to require API keys:
+      # - FLARE_REQUIRE_API_KEY=true
+      # Pass HuggingFace token for gated models:
+      # - HF_TOKEN=${HF_TOKEN}
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "pip install -e '.[all]' -q &&
+             uvicorn flare.gateway.app:create_app --factory
+             --host 0.0.0.0 --port 8080 --workers 1"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  # Optional: Redis for HA multi-node gateway
+  redis:
+    image: redis:7-alpine
+    profiles: ["ha"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:

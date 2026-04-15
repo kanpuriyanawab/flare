@@ -1,0 +1,30 @@
+name: gemma-3-9b
+display_name: "Gemma 3 9B Instruct"
+family: gemma
+version: "3"
+description: "Google's Gemma 3 9B — strong mid-size model with multimodal support."
+hf_model_id: "google/gemma-3-9b-it"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 8192
+  max_model_len: 8192
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["L4:1"]
+  fallback: ["A10:1"]
+memory_gb: 22
+disk_gb: 45
+startup_time_seconds: 120
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+  - vision
+  - reasoning
+tags:
+  - gemma
+  - google
+  - multimodal

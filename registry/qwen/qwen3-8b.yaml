@@ -1,0 +1,35 @@
+name: qwen3-8b
+display_name: "Qwen3 8B Instruct"
+family: qwen
+version: "3"
+description: "Alibaba's Qwen3 8B — fast, strong reasoning, thinking mode support."
+hf_model_id: "Qwen/Qwen3-8B"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 32768
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+  extra_args:
+    - "--enable-reasoning"
+    - "--reasoning-parser qwen3"
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1"]
+memory_gb: 18
+disk_gb: 40
+startup_time_seconds: 120
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - reasoning
+  - function-calling
+tags:
+  - qwen
+  - alibaba
+  - reasoning
+  - multilingual
+  - fast

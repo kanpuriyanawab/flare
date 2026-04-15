@@ -1,0 +1,30 @@
+name: mixtral-8x7b
+display_name: "Mixtral 8x7B Instruct v0.1"
+family: mistral
+version: "8x7b"
+description: "Mistral AI's Mixtral 8x7B MoE — fast MoE model, great for throughput workloads."
+hf_model_id: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+serving:
+  engine: vllm
+  tensor_parallel: 2
+  context_length: 32768
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["A100:2", "A100-80GB:1", "H100:1"]
+  minimum: ["A100:2"]
+  fallback: ["A10G:4"]
+memory_gb: 96
+disk_gb: 120
+startup_time_seconds: 240
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+  - code-generation
+tags:
+  - mistral
+  - moe
+  - high-throughput

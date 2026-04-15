@@ -1,0 +1,32 @@
+name: llama-4-scout-17b
+display_name: "Llama 4 Scout 17B (16E MoE) Instruct"
+family: llama
+version: "4"
+description: "Meta's Llama 4 Scout — 17B active params, 16-expert MoE. Efficient and capable."
+hf_model_id: "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 4
+  context_length: 524288
+  max_model_len: 65536
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["H100:4", "H200:4", "A100-80GB:4"]
+  minimum: ["A100-80GB:4"]
+  fallback: ["H100:2"]
+memory_gb: 80
+disk_gb: 200
+startup_time_seconds: 360
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+  - reasoning
+  - long-context
+tags:
+  - llama
+  - meta
+  - moe
+  - latest

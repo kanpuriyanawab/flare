@@ -1,0 +1,31 @@
+name: qwen2.5-vl-7b
+display_name: "Qwen2.5-VL 7B Instruct"
+family: qwen-vl
+version: "2.5"
+description: "Alibaba's Qwen2.5-VL 7B — multimodal vision-language model, fast and capable."
+hf_model_id: "Qwen/Qwen2.5-VL-7B-Instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 32768
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1"]
+memory_gb: 20
+disk_gb: 45
+startup_time_seconds: 150
+requires_hf_token: false
+capabilities:
+  - chat
+  - vision
+  - image-understanding
+  - text-generation
+tags:
+  - qwen
+  - alibaba
+  - multimodal
+  - vision

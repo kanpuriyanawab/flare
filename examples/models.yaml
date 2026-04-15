@@ -1,0 +1,55 @@
+# Flare desired-state configuration
+# Run `flare apply models.yaml` to deploy all models defined here.
+#
+# See `flare catalog` for available model names.
+
+infra: aws
+region: us-east-1
+
+defaults:
+  idle_timeout: 15m
+  min_replicas: 0
+  max_replicas: 3
+
+models:
+  # Fast, lightweight chat model (GGUF — very cheap)
+  - name: qwen3-8b-q4km
+    mode: on-demand
+    gpu: "L4:1"
+    idle_timeout: 10m
+    min_replicas: 0
+    max_replicas: 5
+
+  # Full-precision Qwen3 8B (vLLM)
+  - name: qwen3-8b
+    mode: on-demand
+    gpu: "L4:1"
+    idle_timeout: 15m
+    min_replicas: 0
+    max_replicas: 3
+
+  # High-quality reasoning model
+  - name: qwen3-72b
+    mode: on-demand
+    gpu: "A100:4"
+    idle_timeout: 20m
+    min_replicas: 0
+    max_replicas: 2
+    # Phase 2: pre-warm on weekdays at 8am
+    # schedule: "0 8 * * 1-5"
+
+  # Llama 3.3 70B — strong instruction following
+  - name: llama-3.3-70b
+    mode: on-demand
+    gpu: "A100:4"
+    idle_timeout: 20m
+    min_replicas: 0
+    max_replicas: 2
+
+  # Code generation
+  - name: deepseek-r1-distill-8b
+    mode: on-demand
+    gpu: "L4:1"
+    idle_timeout: 10m
+    min_replicas: 0
+    max_replicas: 3

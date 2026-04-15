@@ -1,0 +1,29 @@
+name: gemma-3-2b
+display_name: "Gemma 3 2B Instruct"
+family: gemma
+version: "3"
+description: "Google's Gemma 3 2B — ultra-lightweight, runs on consumer GPUs or even CPU."
+hf_model_id: "google/gemma-3-2b-it"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 8192
+  max_model_len: 8192
+  dtype: auto
+  gpu_memory_utilization: 0.85
+gpus:
+  recommended: ["T4:1", "L4:1"]
+  minimum: ["T4:1"]
+  fallback: []
+memory_gb: 6
+disk_gb: 12
+startup_time_seconds: 60
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+tags:
+  - gemma
+  - google
+  - lightweight
+  - fast

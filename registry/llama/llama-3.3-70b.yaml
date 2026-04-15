@@ -1,0 +1,33 @@
+name: llama-3.3-70b
+display_name: "Llama 3.3 70B Instruct"
+family: llama
+version: "3.3"
+description: "Meta's latest Llama 3.3 70B — improved reasoning and instruction following over 3.1."
+hf_model_id: "meta-llama/Llama-3.3-70B-Instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 4
+  context_length: 131072
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+  extra_args:
+    - "--max-num-seqs 64"
+gpus:
+  recommended: ["A100:4", "A100-80GB:2", "H100:2"]
+  minimum: ["A100:4"]
+  fallback: ["A10G:8"]
+memory_gb: 140
+disk_gb: 150
+startup_time_seconds: 300
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+  - reasoning
+tags:
+  - llama
+  - meta
+  - large
+  - latest

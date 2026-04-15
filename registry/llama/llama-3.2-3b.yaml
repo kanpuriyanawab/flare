@@ -1,0 +1,29 @@
+name: llama-3.2-3b
+display_name: "Llama 3.2 3B Instruct"
+family: llama
+version: "3.2"
+description: "Meta's Llama 3.2 3B — ultra-lightweight, ideal for edge and low-cost inference."
+hf_model_id: "meta-llama/Llama-3.2-3B-Instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 131072
+  max_model_len: 8192
+  dtype: auto
+  gpu_memory_utilization: 0.85
+gpus:
+  recommended: ["T4:1", "L4:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1"]
+memory_gb: 8
+disk_gb: 15
+startup_time_seconds: 60
+requires_hf_token: true
+capabilities:
+  - chat
+  - text-generation
+tags:
+  - llama
+  - meta
+  - lightweight
+  - fast

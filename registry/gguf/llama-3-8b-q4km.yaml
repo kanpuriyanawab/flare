@@ -1,0 +1,31 @@
+name: llama-3-8b-q4km
+display_name: "Llama 3 8B Q4_K_M (GGUF)"
+family: llama
+version: "3"
+description: "Llama 3 8B quantized to Q4_K_M GGUF. Runs on a single consumer GPU with 6GB VRAM."
+gguf:
+  repo_id: "bartowski/Meta-Llama-3-8B-Instruct-GGUF"
+  filename: "Meta-Llama-3-8B-Instruct-Q4_K_M.gguf"
+  quantization: "Q4_K_M"
+serving:
+  engine: llama-cpp
+  n_gpu_layers: -1
+  context_length: 8192
+  n_threads: 8
+gpus:
+  recommended: ["L4:1", "A10G:1", "T4:1"]
+  minimum: ["T4:1"]
+  fallback: []
+memory_gb: 6
+disk_gb: 6
+startup_time_seconds: 60
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+tags:
+  - llama
+  - gguf
+  - quantized
+  - lightweight
+  - fast

@@ -1,0 +1,29 @@
+name: mistral-7b-v03
+display_name: "Mistral 7B Instruct v0.3"
+family: mistral
+version: "0.3"
+description: "Mistral AI's Mistral 7B v0.3 — fast, efficient, with function calling support."
+hf_model_id: "mistralai/Mistral-7B-Instruct-v0.3"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 32768
+  max_model_len: 32768
+  dtype: auto
+  gpu_memory_utilization: 0.90
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["T4:1"]
+  fallback: ["A10:1"]
+memory_gb: 16
+disk_gb: 30
+startup_time_seconds: 90
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - function-calling
+tags:
+  - mistral
+  - fast
+  - efficient

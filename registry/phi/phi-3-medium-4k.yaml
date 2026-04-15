@@ -1,0 +1,33 @@
+name: phi-3-medium-4k
+display_name: "Phi-3 Medium 4K Instruct"
+family: phi
+version: "3"
+description: "Microsoft's Phi-3 Medium 4K — 14B params, strong at coding and reasoning tasks."
+hf_model_id: "microsoft/Phi-3-medium-4k-instruct"
+serving:
+  engine: vllm
+  tensor_parallel: 1
+  context_length: 4096
+  max_model_len: 4096
+  dtype: auto
+  gpu_memory_utilization: 0.90
+  extra_args:
+    - "--trust-remote-code"
+gpus:
+  recommended: ["L4:1", "A10G:1", "A100:1"]
+  minimum: ["L4:1"]
+  fallback: ["A10:1"]
+memory_gb: 30
+disk_gb: 60
+startup_time_seconds: 120
+requires_hf_token: false
+capabilities:
+  - chat
+  - text-generation
+  - code-generation
+  - reasoning
+tags:
+  - phi
+  - microsoft
+  - coding
+  - efficient
